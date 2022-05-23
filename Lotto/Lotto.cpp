@@ -1,7 +1,30 @@
 #include "Lotto.h"
 
+static void Swap(int &a, int &b)
+{
+	int temp = a ; 
+	a = b ;
+	b = temp ; 
+}
+
+static void Sort(std::vector<int> &numbers)
+{
+	const size_t nSize = numbers.size() - 2 ; // The last element is bonus number that is not contained.
+	for(int x = 0 ; x < nSize ; x++)
+	{
+		for(int y = 0 ; y < nSize - 1 - x ; y++)
+		{
+			if(numbers[y] > numbers[y + 1])
+			{
+				::Swap(numbers[y], numbers[y + 1]) ; // Call by reference.
+			}
+		}
+	}
+}
+
 CLotto::CLotto() 
 {
+	nCount = 0 ; 
 	::memset(m_hTables, 0, sizeof(m_hTables)) ; 
 }
 
@@ -37,8 +60,9 @@ void CLotto::draw()
 		pNumbers->push_back(n) ; 
 		m_hTables[n]++ ; 
 	}
-	std::sort(pNumbers->begin(), pNumbers->end() - 2) ; 
+	::Sort(*pNumbers) ; 
 	Save(pNumbers) ; 
+	nCount++ ; 
 }
 
 void CLotto::show(int n) 
@@ -64,7 +88,7 @@ void CLotto::stat()
 		const float rangeSize = 45.0f ; 
 		std::cout << std::fixed ; 
 		std::cout.precision(7) ;
-		std::cout << " Frequency of " << idx << " : " << (value / rangeSize) * 100 << "%\n" ; 
+		std::cout << " Frequency of " << idx << " : " << (value / (rangeSize * nCount)) * 100 << "%\n" ; 
 	}
 }
 
