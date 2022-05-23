@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <algorithm>
 #include <random>
 
 const int RANGE_SIZE = 45 ; 
@@ -9,12 +8,12 @@ const int MAX_CACHE_SIZE = 10 ;
 class CLotto
 { 
 	private :
-		int nCount ;
+		int m_count ;
 		std::vector<std::vector<int> *> m_cache ; // Variable to show previous records.
-		int m_hTables[RANGE_SIZE + 1] ; // Variable to caluclate stat().
+		int m_countTable[RANGE_SIZE + 1] ; // Variable to caluclate stat().
 	protected :
 		void Save(std::vector<int> *numbers) ; // Insert data to cache.
-		bool IsMax() ; // Determine whether cashe size is over than 10? -> erase the oldest data in containers.
+		bool IsMax() ; // Determine whether cashe length is over than 10? -> erase the oldest data in containers.
 	public :
 		CLotto() ; 
 		~CLotto() ; 
