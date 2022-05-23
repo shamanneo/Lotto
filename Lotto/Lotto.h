@@ -12,7 +12,7 @@ class CLotto
 		std::vector<std::vector<int> *> m_cache ; // Variable to show previous records.
 		int m_countTable[RANGE_SIZE + 1] ; // Variable to caluclate stat().
 	protected :
-		void Save(std::vector<int> *numbers) ; // Insert data to cache.
+		void Save(std::vector<int> *numbers) ; // Save numbers data to cache.
 		bool IsMax() ; // Determine whether cashe length is over than 10? -> erase the oldest data in containers.
 	public :
 		CLotto() ; 

@@ -83,7 +83,7 @@ void CLotto::show(int n)
 	int tempCount = n ;
 	if(tempCount == 0) tempCount = 1 ; // If Show(0) -> Show the most recent one.
 	std::vector<int> tempNumbers ;
-	if(n > MAX_CACHE_SIZE) return ; 
+	if(n > MAX_CACHE_SIZE) return ; // Out of range.
 	for(auto ri = m_cache.rbegin() ; ri != m_cache.rend() ; ri++, tempCount--)
 	{
 		//		cache 
