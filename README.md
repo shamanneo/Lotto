@@ -4,9 +4,9 @@
 
 인터페이스 구성 
 
-1 : Draw 
-2 : Show 
-3 : Stat
-4 : Exit
+1 : Draw \n
+2 : Show \n
+3 : Stat \n
+4 : Exit \n
 
 
