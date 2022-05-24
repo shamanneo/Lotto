@@ -11,8 +11,10 @@ int main()
 	{
 	CLotto lotto ;
 	int nCont = 0 ; 
-	while(nCont != 10) 
+	int i = 0 ;
+	while(nCont != 4) 
 	{
+		std::cout << "1 : Draw, 2 : Show, 3 : Stat, 4 : Exit. Enter your input -> " ; 
 		std::cin >> nCont ; 
 		switch(nCont)
 		{
@@ -23,7 +25,7 @@ int main()
 			}
 			case 2 :
 			{
-				int i = 0 ;
+				std::cout << "Your input is Show function, Enter your parameter N -> " ; 
 				std::cin >> i ; 
 				lotto.show(i) ;
 				break ; 
@@ -35,7 +37,7 @@ int main()
 			}
 			default :
 			{
-				break ; 
+				break ;
 			}
 		}
 	}

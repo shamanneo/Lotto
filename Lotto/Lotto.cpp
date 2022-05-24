@@ -41,10 +41,10 @@ void CLotto::Save(std::vector<int> *numbers)
 {
 	if(IsMax())
 	{
-		delete *m_cache.begin() ;
-		m_cache.erase(m_cache.begin()) ; 
+		delete *m_cache.rbegin() ;
+		m_cache.erase(m_cache.end() - 1) ; 
 	}
-	m_cache.emplace_back(numbers) ; 
+	m_cache.insert(m_cache.begin(), numbers) ; 
 }
 
 void CLotto::draw()
@@ -80,18 +80,20 @@ void CLotto::draw()
 
 void CLotto::show(int n) 
 {
-	int tempCount = n ;
-	if(tempCount == 0) tempCount = 1 ; // If Show(0) -> Show the most recent one.
-	std::vector<int> tempNumbers ;
-	if(n > MAX_CACHE_SIZE) return ; // Out of range.
-	for(auto ri = m_cache.rbegin() ; ri != m_cache.rend() ; ri++, tempCount--)
+	const int idx = n ;
+	if(n > MAX_CACHE_SIZE - 1) 
 	{
-		//		cache 
-		if(tempCount == 0) return ; // Base case.
-		tempNumbers = **ri ; 
-		std::cout << tempNumbers[0] << " " << tempNumbers[1] << " " << tempNumbers[2] << " " 
-				  << tempNumbers[3] << " " << tempNumbers[4] << " " << tempNumbers[5] << " | " << tempNumbers[6] << '\n' ; 
+		std::cout << "Out of range\n" ; 
+		return ; 
 	}
+	else if(m_cache.size() < idx)
+	{
+		std::cout << "The corresponding number does not exist\n" ; 
+		return ; 
+	}
+	std::vector<int> tempNumbers = *m_cache[idx] ; 
+	std::cout << tempNumbers[0] << " " << tempNumbers[1] << " " << tempNumbers[2] << " " 
+				<< tempNumbers[3] << " " << tempNumbers[4] << " " << tempNumbers[5] << " | " << tempNumbers[6] << '\n' ; 
 }
 
 void CLotto::stat() 
